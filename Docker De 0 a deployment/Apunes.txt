@@ -1,0 +1,45 @@
+###Introduccion a Docker###
+	Docker permite ejecutar procesos de forma aislada dentro de nuestro propio sistema sin necesidad de virtualizar.
+	Docker se basa en tecnologias Linyx CGroups y Namespaces
+	Los Namespaces:
+		Controlar qué puede ver un proceso dentro del sistema, como el listado de procesos o el file system.
+	Los cgroups:
+		Limitar la cantidad de recursos (cpu, memoria, etc) que un proceso puede utilizar.
+		
+###Primeros pasos con docker###
+
+	docker run -it ubuntu -> arrancar(Instanciar) contenedor de ubuntu
+	docker ps -> ver contendores activos
+	docker logs d605f57743cc -> ver los logs de un contenedor con el id de la imagen
+	docker logs -f d605f57743cc -> con el -f podemos hacer un follow para seguir viendo los logs del contenedor
+	docker stop d605f57743cc -> parar un contenedor
+	docker ps -a -> mostrar los contenedores en ejecucion y parados
+	docker start -i  d605f57743cc -> volver arrancar un contendor parado. el -i es para que sea interactivo
+	docker rm d605f57743cc  -> eliminar el contendor
+
+###Creando nuestras imagenes Docker###
+
+	Ejemplo para crear una imagen desde un dockerFile
+	
+	docker build -t "ismael-curso-docker" .   
+	-> el . del final es para indicar donde esta el DockerFile en este caso se pone punto porque este en esa misma ruta si estubiera en otra hay que especificar donde.
+	-> el -t es para indicar el nombre de la imagen a crear en este caso "ismael-curso-docker"
+	
+###Diferencias entre CMD y ENTRYPOINT###
+	ENTRYPOINT -> SIEMPRE SE EJECUTA 
+	CMD -> Es para ejecutar comandos cuando se arranque el contendor Se le pasa como Argumento al ENTRYPOPINT
+		Por ejemplo:
+			CMD ["/usr/bin/java", "-jar", "-Dspring.profiles.active-default", "/app.jar"]
+			Aqui lo que estamos diciendo es que ejecuta el app.jar -> java -jar --Dspring.profiles.active-default app.jar
+			
+###VARIABLES DE ENTORNO###
+	ENV -> Especificar variables de entorno
+	
+	Ejemplo
+		ENV DISPLAY_ERROR=ON
+		
+	Como utilizar las varaibles de entorno
+		${DISPLAY_ERROR}
+		
+###BUENAS PRACTICAS###
+	
