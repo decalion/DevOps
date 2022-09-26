@@ -1,0 +1,93 @@
+###KUBERNETES###
+	Kubernetes nos provee con herramientas para automatizar la distribución de aplicaciones a un cluster de servidores, 
+	asegurando una utilización más eficiente del hardware, comparada con la que podemos conseguir de manera tradicional.
+
+	Kubernetes se coloca delante de un conjunto de servidores para que nosotros los veamos como un solo servidor, 
+	aunque detrás pueda haber decenas o miles de servidores.
+
+	Para conseguir esto, Kubernetes expone una API Restful que podemos utilizar para desplegar de forma sencilla nuestra aplicación, 
+	y que hará que el propio sistema se ocupe de arreglar fallos en servidores, de la monitorización de la aplicación, etc. 
+	En vez de desplegar nuestra aplicación a todos los servidores, solo tendremos que decidir cuantas instancias de la aplicación 
+	deben ejecutarse al mismo tiempo, y Kubernetes se encargará de que eso se cumpla.
+
+
+	La API de Kubernetes nos permite modelar todo el ciclo de vida de las aplicaciones que se ejecutarán en el cluster de servidores. 
+	Es una API Restful a la que podemos enviar peticiones describiendo cómo queremos desplegar. 
+	Podemos utilizar cualquier cliente HTTP para enviarle peticiones (curl, wget, Postman...), pero el propio Kubernetes trae una herramienta
+	de línea de comandos para facilitar la interacción con la API. Se llama kubectl.
+	
+	
+###Instalando Kubernetes###
+	https://kubernetes.io/es/
+	https://kubernetes.io/es/docs/tasks/tools/included/install-kubectl-windows/
+
+
+###Minikube###
+	minikube es una máquina virtual que simulará un cluster de Kubernetes, y que se ejecuta de forma local con Virtualbox en nuestra máquina.
+	https://github.com/kubernetes
+	https://github.com/kubernetes/minikube
+
+
+###Desplegar Imagenes docker###	
+
+	Para decirle a Kubernetes que despliegue nuestra aplicación, vamos a ejecutar este comando en nuestra terminal
+		kubectl run hello-world --image=fiunchinho/codely-docker:latest --port=80
+		
+	Para exponer esta aplicación en mi portatil, y así poder enviarle peticiones para ver que todo funciona correctamente, nos hace falta este comando
+		kubectl port-forward deployment/hello-world 8000:80
+		
+###usar comando DOCKER CON Kubernetes###
+	eval $(minikube docker-env)
+	
+###PODS de Kubernetes###
+	Los PODS representan una aplicacion, y contiene una coleccion de uno o mas contenedores y/o volumenes de disco.
+	
+	Cada contenedor de un POD se ejecuta en su propio cgroup aunque comparte el namespace de la red por lo que todos los contenedores reciben la 
+	misma direccion IP. Esta IP es privada y no se puede acceder desde fuera del cluster de  Kubernetes, solo desde otros pods.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
